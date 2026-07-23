@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+/* Play the intro loader on a fresh entry (typed URL, external link, reload).
+   Skip it when arriving from inside the site (story pages, back button). */
+try {
+  var nav = performance.getEntriesByType("navigation")[0];
+  var backNav = nav && nav.type === "back_forward";
+  var internal = document.referrer && document.referrer.indexOf(location.origin) === 0;
+  if (backNav || internal) document.documentElement.setAttribute("data-skip-loader", "");
+} catch (e) {}
+</script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Andrew Fabela — Builder. Leader. Marine Officer Candidate.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://api.fontshare.com/v2/css?f[]=nohemi@300,400,500,600,700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;family=Instrument+Serif:ital@0;1&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+html{scroll-behavior:smooth}
+html[data-skip-loader] #afloader{display:none!important}
+.heroIn{animation:fadeUp 1s ease 3.5s both}
+html[data-skip-loader] .heroIn{animation-delay:.25s}
+body{margin:0;background:#fff;color:#0a0a0a;font-family:'Nohemi','Archivo',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+::selection{background:#0c5563;color:#fff}
+.kicker{font-size:.72rem;font-weight:500;letter-spacing:.03rem;text-transform:uppercase;color:#0c5563;line-height:1.2}
+.hbig{font-weight:500;font-size:clamp(1.6rem,2.9vw,2.4rem);line-height:1.08;text-transform:uppercase;margin:0;white-space:pre-line}
+.hang{text-indent:-3.4rem;margin-left:3.4rem}
+@media(max-width:700px){.hang{text-indent:-2.2rem;margin-left:2.2rem}}
+.statementgrid{display:flex;flex-direction:column;gap:2rem}
+@media(min-width:880px){.statementgrid{flex-direction:row;align-items:center;gap:4rem}.statementgrid>div{flex:1}}
+.chapgrid{display:grid;grid-template-columns:1fr;gap:26px;perspective:1200px;align-items:start}
+@media(min-width:760px){.chapgrid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1150px){.chapgrid{grid-template-columns:repeat(3,1fr)}}
+.glass{position:relative;border-radius:14px;--spot:230px;--hue:calc(196 + var(--xp,.5)*130);background-color:hsl(0 0% 60% / .14);background-image:radial-gradient(var(--spot) var(--spot) at calc(var(--lx,-999)*1px) calc(var(--ly,-999)*1px),hsl(var(--hue) 95% 70% / .15),transparent);backdrop-filter:blur(24px) saturate(165%) brightness(1.06);-webkit-backdrop-filter:blur(24px) saturate(165%) brightness(1.06);border:2px solid hsl(0 0% 75% / .16);box-shadow:0 1.1rem 2.2rem -.9rem rgba(0,0,0,.85),inset 0 1px 0 rgba(255,255,255,.28);color:#fff;display:flex;flex-direction:column;transition:background-color .4s ease;transform-style:preserve-3d;will-change:transform;cursor:pointer}
+.glass:hover{background-color:hsl(0 0% 66% / .18)}
+.glass::before,.glass::after{content:'';pointer-events:none;position:absolute;inset:-2px;border:2px solid transparent;border-radius:14px;mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0) border-box;mask-composite:exclude;-webkit-mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0) border-box;-webkit-mask-composite:xor;z-index:3}
+.glass::before{background:radial-gradient(calc(var(--spot)*.78) calc(var(--spot)*.78) at calc(var(--lx,-999)*1px) calc(var(--ly,-999)*1px),hsl(var(--hue) 100% 58% / .95),transparent 100%) border-box;filter:brightness(1.9)}
+.glass::after{background:radial-gradient(calc(var(--spot)*.45) calc(var(--spot)*.45) at calc(var(--lx,-999)*1px) calc(var(--ly,-999)*1px),hsl(0 0% 100% / .95),transparent 100%) border-box}
+.glass>img,.glass>div:first-of-type{border-radius:12px 12px 0 0}
+.blob{position:absolute;border-radius:50%;filter:blur(85px);pointer-events:none;will-change:transform}
+@keyframes drift1{from{transform:translate(0,0) scale(1)}to{transform:translate(9vw,-7vh) scale(1.18)}}
+@keyframes drift2{from{transform:translate(0,0) scale(1.12)}to{transform:translate(-8vw,8vh) scale(.92)}}
+@keyframes drift3{from{transform:translate(0,0) scale(.94)}to{transform:translate(7vw,6vh) scale(1.15)}}
+.glass img{filter:saturate(1.02)}
+.glass .more{max-height:0;opacity:0;overflow:hidden;transition:max-height .5s cubic-bezier(.45,0,.25,1),opacity .4s ease,margin .5s cubic-bezier(.45,0,.25,1);transition-delay:0s;margin:0}
+.glass:hover .more{max-height:14rem;opacity:1;margin-top:6px;transition:max-height .75s cubic-bezier(.33,1,.68,1) .22s,opacity .6s ease .3s,margin .75s cubic-bezier(.33,1,.68,1) .22s}
+.cardlink{position:absolute;inset:0;z-index:4}
+.glass p:not(.more){min-height:3.1em}
+.readmore{font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#9fd3db;margin-top:auto;padding-top:12px}
+.craftrow{display:flex;flex-wrap:wrap;background:#f2f3f5;border:1px solid #d4d7db}
+.craftrow.rev{flex-direction:row-reverse}
+.craftimgs{flex:1 1 400px;min-width:0;display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#d4d7db;align-content:start}
+.craftimgs img{display:block;width:100%;height:auto;min-height:0}
+.crafttext{flex:1 1 360px;min-width:0;padding:46px 42px;display:flex;flex-direction:column;justify-content:center;box-sizing:border-box}
+.statrow{display:grid;grid-template-columns:repeat(2,1fr);gap:44px 24px}
+@media(min-width:880px){.statrow{grid-template-columns:repeat(5,1fr)}}
+.footgrid{display:flex;flex-direction:column;gap:4rem}
+@media(min-width:880px){.footgrid{flex-direction:row;justify-content:space-between;gap:5rem}.footgrid>div{flex:1}}
+.finput{width:100%;box-sizing:border-box;background:transparent;border:0;border-bottom:.5px solid #fff;color:#fff;font-family:'Nohemi',sans-serif;font-size:.88rem;padding:10px 0;outline:none;text-transform:uppercase;letter-spacing:.03em}
+.finput::placeholder{color:#9ca3a5}
+.ulink{position:relative;text-decoration:none;text-transform:uppercase;font-size:.9rem;font-weight:400}
+.ulink::after{content:'';position:absolute;left:0;bottom:-3px;height:1px;width:100%;background:currentColor;transform:scaleX(1);transform-origin:left;transition:transform .5s ease}
+.ulink:hover::after{transform:scaleX(0)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+@keyframes slideInL{from{transform:translateX(-42vw)}to{transform:none}}
+@keyframes slideInR{from{transform:translateX(42vw)}to{transform:none}}
+@keyframes imgcycle{0%,22%{opacity:1}30%,100%{opacity:0}}
+@keyframes loaderOut{from{opacity:1}to{opacity:0;visibility:hidden}}
+@keyframes kenburns{from{transform:scale(1) translateY(0)}to{transform:scale(1.025) translateY(-.6%)}}
+@keyframes roll7{0%,11.4%{transform:translateY(0)}14.3%,25.7%{transform:translateY(-1.3em)}28.6%,40%{transform:translateY(-2.6em)}42.9%,54.3%{transform:translateY(-3.9em)}57.1%,68.6%{transform:translateY(-5.2em)}71.4%,82.9%{transform:translateY(-6.5em)}85.7%,97.1%{transform:translateY(-7.8em)}100%{transform:translateY(-9.1em)}}
+.rollwrap{display:inline-flex;height:1.3em;overflow:hidden;vertical-align:bottom}
+.rollcol{display:flex;flex-direction:column;animation:roll7 15.4s cubic-bezier(.65,0,.35,1) infinite}
+.rollcol span{height:1.3em;line-height:1.3em;display:block;white-space:nowrap}
+</style>
+</helmet>
+
+<div id="afloader" ref="{{ loaderRef }}" style="position:fixed;inset:0;z-index:9999;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;animation:loaderOut .7s ease 3.4s both">
+  <div style="position:relative;width:12rem;height:12rem;overflow:hidden">
+    <img src="uploads/loading-photo.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 22%;opacity:0;animation:imgcycle 3.2s linear forwards">
+    <img src="uploads/run-flag.jpeg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:imgcycle 3.2s linear .8s forwards">
+    <img src="uploads/quantico.jpeg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:imgcycle 3.2s linear 1.6s forwards">
+    <img src="uploads/davos.jpeg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:imgcycle 3.2s linear 2.4s forwards">
+  </div>
+  <div style="display:flex;align-items:baseline;gap:.4rem;margin-top:1.6rem;font-weight:600;font-size:1.7rem;letter-spacing:.01em">
+    <span style="display:inline-block;animation:slideInL 1.5s cubic-bezier(.22,1,.36,1) .2s both">andrew</span>
+    <span style="opacity:.5">///</span>
+    <span style="display:inline-block;animation:slideInR 1.5s cubic-bezier(.22,1,.36,1) .2s both">fabela</span>
+  </div>
+  <div style="position:absolute;bottom:1.6rem;left:24px;right:24px;text-align:center;animation:fadeUp 1s ease 1.2s both">
+    <span style="font-weight:500;font-size:clamp(.8rem,1.6vw,1.15rem);letter-spacing:.05em;text-transform:uppercase">Builder. Leader. Marine Officer Candidate.</span>
+  </div>
+</div>
+
+<header data-screen-label="Nav" style="position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 30px;mix-blend-mode:difference;color:#fff">
+  <a href="#top" style="font-family:'Nohemi',sans-serif;font-weight:600;font-size:1.35rem;text-decoration:none;color:#fff">a<span style="opacity:.55">///</span>fabela</a>
+  <div style="display:flex;gap:26px;font-size:.78rem;font-weight:400;letter-spacing:.035rem;text-transform:uppercase">
+    <a href="#story" style="text-decoration:none;color:#fff">Story</a>
+    <a href="#chapters" style="text-decoration:none;color:#fff">Chapters</a>
+    <a href="#design" style="text-decoration:none;color:#fff">Design</a>
+    <a href="#write" style="text-decoration:none;color:#fff">Contact Me</a>
+  </div>
+</header>
+
+<div id="top" data-screen-label="Hero" style="height:100dvh;width:100%;position:relative;overflow:hidden">
+  <img src="uploads/hero-updated.jpg" alt="Andrew Fabela" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 18%;animation:kenburns 18s ease-in-out infinite alternate;will-change:transform;filter:contrast(1.05) saturate(1.06) brightness(1.01)">
+  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,.38),rgba(255,255,255,0) 14%,rgba(0,0,0,0) 55%,rgba(0,0,0,.46))"></div>
+  <div style="position:relative;z-index:2;height:100%;width:100%;box-sizing:border-box;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding:0 30px 38px">
+    <div class="heroIn" style="max-width:58rem">
+      <h1 style="margin:0;color:#fff;font-weight:500;font-size:clamp(2.1rem,4.4vw,3.6rem);line-height:1.02;text-transform:uppercase;text-shadow:0 2px 24px rgba(0,0,0,.3)">where strength meets service where ideas become movements</h1>
+    </div>
+  </div>
+</div>
+
+<section id="story" data-screen-label="Statement" style="background:#dbdee3;box-sizing:border-box;padding:110px 30px">
+  <div style="max-width:1240px;margin:0 auto;display:flex;flex-direction:column;gap:1.4rem">
+    <span class="kicker" data-rv style="opacity:0;transform:translateY(40px);transition:.8s ease">One conviction, tested everywhere</span>
+    <p class="hbig hang" data-rv style="opacity:0;transform:translateY(40px);transition:.8s ease .08s">I build
+things that make
+people stronger.</p>
+    <p data-rv style="margin:0 0 0 3.4rem;max-width:34rem;font-size:.88rem;text-transform:uppercase;line-height:1.6;color:#33383b;opacity:0;transform:translateY(40px);transition:.8s ease .16s">It started in Naples, Florida at sixteen and has been tested ever since — in a Ternopil orphanage, on the Davos stage, on the parade deck at Quantico. I'm a Stanford Design Engineering graduate ('26) and U.S. Marine Corps officer candidate, and every chapter below returns to the same belief: strength is something you build in other people.</p>
+  </div>
+</section>
+
+<section id="chapters" data-screen-label="Chapters" style="position:relative;padding:110px 30px;box-sizing:border-box;overflow:hidden;background:linear-gradient(rgba(8,13,17,.8),rgba(8,13,17,.88)),url('uploads/ternopil.JPG') center/cover fixed no-repeat">
+  <div class="blob" aria-hidden="true" style="width:44vw;height:44vw;left:-12vw;top:4%;background:radial-gradient(circle,rgba(127,196,207,.5),transparent 65%);animation:drift1 21s ease-in-out infinite alternate"></div>
+  <div class="blob" aria-hidden="true" style="width:38vw;height:38vw;right:-10vw;top:32%;background:radial-gradient(circle,rgba(179,38,30,.48),transparent 65%);animation:drift2 26s ease-in-out infinite alternate"></div>
+  <div class="blob" aria-hidden="true" style="width:34vw;height:34vw;left:22vw;bottom:-8%;background:radial-gradient(circle,rgba(193,154,61,.42),transparent 65%);animation:drift3 18s ease-in-out infinite alternate"></div>
+  <div style="position:relative;z-index:1;max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:3.5rem">
+    <div style="display:flex;flex-direction:column;gap:1rem;max-width:40rem">
+      <span class="kicker" data-rv style="color:#7fc4cf;opacity:0;transform:translateY(40px);transition:.8s ease">The Chapters</span>
+      <p class="hbig hang" data-rv style="color:#fff;opacity:0;transform:translateY(40px);transition:.8s ease .08s">Six chapters.
+One mission.</p>
+    </div>
+    <div class="chapgrid" ref="{{ gridRef }}">
+
+      <div class="glass" data-rv style="opacity:0;transform:translateY(40px);transition:.8s ease .05s">
+        <a class="cardlink" href="story/tough-kids-boot-camp.html" aria-label="Read the full Tough Kids Boot Camp story"></a>
+        <img src="https://static.wixstatic.com/media/0ceb07_4cd4c9879f6c43e8a51eef97a6a11012~mv2.png" alt="Andrew coaching kids at Tough Kids Boot Camp" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        <div style="padding:22px;display:flex;flex-direction:column;gap:10px;flex:1">
+          <span style="font-size:.66rem;letter-spacing:.14em;color:#9fd3db;text-transform:uppercase">01 · The Foundation</span>
+          <h3 style="margin:0;font-weight:500;font-size:1.25rem;text-transform:uppercase">Tough Kids Boot Camp</h3>
+          <span style="font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#b8c4c7">Founder &amp; CEO · 501(c)(3) · Naples, FL → Ternopil</span>
+          <p style="margin:0;font-family:'Inter',sans-serif;font-weight:300;font-size:.86rem;line-height:1.55;color:#d8dee0">Free boot camps teaching at-risk teens leadership, discipline, and crisis de-escalation.</p>
+          <p class="more" style="font-family:'Inter',sans-serif;font-weight:300;font-size:.84rem;line-height:1.6;color:#c3ced1">Founded at 16 with the Lee County Sheriff's Office and partnered with the Boys &amp; Girls Club of America. Expanded to Ukraine as General Director of TKBC Ukraine — running the athletics of a six-week program in Ternopil.</p>
+          <span class="readmore">Read the full story ↗</span>
+        </div>
+      </div>
+
+      <div class="glass" data-rv style="opacity:0;transform:translateY(40px);transition:.8s ease .12s">
+        <a class="cardlink" href="story/tough-kid-mindset.html" aria-label="Read the full Tough Kid Mindset story"></a>
+        <div style="height:200px;background:linear-gradient(150deg,#101416,#1e2528);display:flex;align-items:center;justify-content:center;padding:16px 0;box-sizing:border-box">
+          <img src="uploads/IMG_1435.jpeg" alt="Tough Kid Mindset — #1 Amazon bestseller" loading="lazy" style="height:100%;width:auto;max-width:88%;object-fit:contain;display:block;box-shadow:0 14px 34px rgba(0,0,0,.55)">
+        </div>
+        <div style="padding:22px;display:flex;flex-direction:column;gap:10px;flex:1">
+          <span style="font-size:.66rem;letter-spacing:.14em;color:#9fd3db;text-transform:uppercase">02 · The Book</span>
+          <h3 style="margin:0;font-weight:500;font-size:1.25rem;text-transform:uppercase">Tough Kid Mindset</h3>
+          <span style="font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#b8c4c7">#1 Amazon Bestseller · written at 17</span>
+          <p style="margin:0;font-family:'Inter',sans-serif;font-weight:300;font-size:.86rem;line-height:1.55;color:#d8dee0">The boot camp's playbook — resilience, discipline, decision-making, accountability.</p>
+          <p class="more" style="font-family:'Inter',sans-serif;font-weight:300;font-size:.84rem;line-height:1.6;color:#c3ced1">Defines what a real "Tough Kid" is: purpose-driven, respectful, disciplined, a leader, faithful, humble, and confident. "Andrew captures every quality it takes to win — not only in sports, but in life!" — John Dorsey, former NFL GM.</p>
+          <span class="readmore">Read the full story ↗</span>
+        </div>
+      </div>
+
+      <div class="glass" data-rv style="opacity:0;transform:translateY(40px);transition:.8s ease .19s">
+        <a class="cardlink" href="story/students-supporting-ukraine.html" aria-label="Read the full Students Supporting Ukraine story"></a>
+        <img src="uploads/UCSA/IMG_2561.jpeg" alt="The U.C.S.A. school building in Kyiv, Ukraine" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        <div style="padding:22px;display:flex;flex-direction:column;gap:10px;flex:1">
+          <span style="font-size:.66rem;letter-spacing:.14em;color:#9fd3db;text-transform:uppercase">03 · The Mission</span>
+          <h3 style="margin:0;font-weight:500;font-size:1.25rem;text-transform:uppercase">Students Supporting Ukraine</h3>
+          <span style="font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#b8c4c7">Founder &amp; President · Stanford</span>
+          <p style="margin:0;font-family:'Inter',sans-serif;font-weight:300;font-size:.86rem;line-height:1.55;color:#d8dee0">Led grassroots fundraising to fund a $2,000,000 project for Ukraine's youth.</p>
+          <p class="more" style="font-family:'Inter',sans-serif;font-weight:300;font-size:.84rem;line-height:1.6;color:#c3ced1">Spoke at churches, schools, and events alongside speakers from the Ukrainian President's Office. The project built the Ukrainian Christian Sports Academy — a school in Kyiv, Ukraine for refugee youth from the Eastern front.</p>
+          <span class="readmore">Read the full story ↗</span>
+        </div>
+      </div>
+
+      <div class="glass" data-rv style="opacity:0;transform:translateY(40px);transition:.8s ease .05s">
+        <a class="cardlink" href="story/on-the-world-stage.html" aria-label="Read the full On the World Stage story"></a>
+        <img src="uploads/davos.jpeg" alt="Ukraine House — World Economic Forum, Davos" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">
+        <div style="padding:22px;display:flex;flex-direction:column;gap:10px;flex:1">
+          <span style="font-size:.66rem;letter-spacing:.14em;color:#9fd3db;text-transform:uppercase">04 · The Stage</span>
+          <h3 style="margin:0;font-weight:500;font-size:1.25rem;text-transform:uppercase">On the World Stage</h3>
+          <span style="font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#b8c4c7">Davos · Washington D.C. · Ukrainian Embassy</span>
+          <p style="margin:0;font-family:'Inter',sans-serif;font-weight:300;font-size:.86rem;line-height:1.55;color:#d8dee0">Carrying the story into the rooms where decisions about Ukraine get made.</p>
+          <p class="more" style="font-family:'Inter',sans-serif;font-weight:300;font-size:.84rem;line-height:1.6;color:#c3ced1">The "Education, business, advocacy" panel at the Ukrainian Prayer Breakfast in Washington, D.C., the Ukrainian Embassy, and the stage of Ukraine House at the World Economic Forum in Davos, January 2025.</p>
+          <span class="readmore">Read the full story ↗</span>
+        </div>
+      </div>
+
+      <div class="glass" data-rv style="opacity:0;transform:translateY(40px);transition:.8s ease .12s">
+        <a class="cardlink" href="story/stanford-american-club.html" aria-label="Read the full Stanford American Club story"></a>
+        <img src="uploads/run-flag.jpeg" alt="Veterans Day Challenge — Death Valley to Mt. Whitney" loading="lazy" style="width:100%;height:200px;object-fit:cover;object-position:center 55%;display:block">
+        <div style="padding:22px;display:flex;flex-direction:column;gap:10px;flex:1">
+          <span style="font-size:.66rem;letter-spacing:.14em;color:#9fd3db;text-transform:uppercase">05 · The Flag</span>
+          <h3 style="margin:0;font-weight:500;font-size:1.25rem;text-transform:uppercase">The Stanford American Club</h3>
+          <span style="font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#b8c4c7">Co-Founder · Veterans Day Challenge</span>
+          <p style="margin:0;font-family:'Inter',sans-serif;font-weight:300;font-size:.86rem;line-height:1.55;color:#d8dee0">Reviving patriotic spirit on campus through faith, freedom, and service.</p>
+          <p class="more" style="font-family:'Inter',sans-serif;font-weight:300;font-size:.84rem;line-height:1.6;color:#c3ced1">Debates, speaker events, and challenges — the Veterans Day Challenge (125 miles, Death Valley to Mt. Whitney, midnight to midnight) and Relay for America, a 24-hour Memorial Day flag relay honoring fallen veterans.</p>
+          <span class="readmore">Read the full story ↗</span>
+        </div>
+      </div>
+
+      <div class="glass" data-rv style="opacity:0;transform:translateY(40px);transition:.8s ease .19s">
+        <a class="cardlink" href="story/quantico.html" aria-label="Read the full Quantico story"></a>
+        <img src="uploads/IMG_3190.JPG" alt="Morning PT at Marine Corps OCS, Quantico" loading="lazy" style="width:100%;height:200px;object-fit:cover;object-position:center 30%;display:block">
+        <div style="padding:22px;display:flex;flex-direction:column;gap:10px;flex:1">
+          <span style="font-size:.66rem;letter-spacing:.14em;color:#9fd3db;text-transform:uppercase">06 · The Crucible</span>
+          <h3 style="margin:0;font-weight:500;font-size:1.25rem;text-transform:uppercase">Quantico</h3>
+          <span style="font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#b8c4c7">U.S. Marine Corps PLC · "Iron Man" Award</span>
+          <p style="margin:0;font-family:'Inter',sans-serif;font-weight:300;font-size:.86rem;line-height:1.55;color:#d8dee0">300 candidates. One Iron Man.</p>
+          <p class="more" style="font-family:'Inter',sans-serif;font-weight:300;font-size:.84rem;line-height:1.6;color:#c3ced1">Completed PLC-Juniors at Officer Candidates School — a screening of moral, mental, and physical fitness for commissioning as a Marine officer. Awarded "Iron Man" for the highest level of fitness in a company of 300. PLC-Seniors: May 2027.</p>
+          <span class="readmore">Read the full story ↗</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="design" data-screen-label="Design Work" style="background:#fff;padding:110px 30px;box-sizing:border-box">
+  <div style="max-width:1240px;margin:0 auto;display:flex;flex-direction:column;gap:3rem">
+    <div style="display:flex;flex-direction:column;gap:1rem;max-width:44rem">
+      <span class="kicker" data-rv style="opacity:0;transform:translateY(40px);transition:.8s ease">The Craft — Design Work</span>
+      <p class="hbig hang" data-rv style="opacity:0;transform:translateY(40px);transition:.8s ease .08s">Design work,
+built by hand.</p>
+      <p data-rv style="margin:0 0 0 3.4rem;max-width:32rem;font-size:.88rem;text-transform:uppercase;line-height:1.6;color:#494e54;opacity:0;transform:translateY(40px);transition:.8s ease .16s">Trained in Stanford's Design Engineering program — where engineering rigor meets human-centered design. Selected work below.</p>
+    </div>
+
+    <div class="craftrow" data-rv style="opacity:0;transform:translateY(40px);transition:.9s ease">
+      <div class="craftimgs">
+        <img src="uploads/IMG_3123.jpeg" alt="Tik-Tok — ME 102 mechanical clock, 3/4 view" loading="lazy" style="grid-column:1/3">
+        <img src="uploads/IMG_3137.jpeg" alt="Tik-Tok — fabricated parts flat lay" loading="lazy" style="aspect-ratio:4/3;height:100%;object-fit:cover">
+        <img src="uploads/IMG_3129.jpeg" alt="Tik-Tok — side profile" loading="lazy" style="aspect-ratio:4/3;height:100%;object-fit:cover">
+      </div>
+      <div class="crafttext">
+        <span class="kicker" style="margin-bottom:14px">Mechanical Design · ME 102</span>
+        <h3 style="margin:0 0 16px;font-weight:500;font-size:1.9rem;text-transform:uppercase">Tik-Tok</h3>
+        <p style="margin:0 0 12px;font-family:'Inter',sans-serif;font-weight:300;line-height:1.7;color:#33383b;font-size:.95rem">A fully functional timepiece powered by nothing but a falling weight. As gravity pulls the weight down, a stamp on a vertical linkage rocks between an ink pad and a moving paper belt — printing a physical record of the passage of time, one stamp at a time.</p>
+        <p style="margin:0 0 12px;font-family:'Inter',sans-serif;font-weight:300;line-height:1.7;color:#33383b;font-size:.95rem">Built with a five-person team in Stanford's ME 102: a gear train of 3D-printed and laser-cut parts on an acrylic frame, iterated until the whole mechanism ran reliably on gravitational potential energy alone.</p>
+        <span style="font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:#6b7176;margin-top:12px;line-height:1.9">Role: Mechanical Designer · Team of 5 · ME 102, Winter 2025</span>
+        <a href="story/tik-tok.html" class="ulink" style="margin-top:20px;align-self:flex-start;color:#0c5563">Explore the build ↗</a>
+      </div>
+    </div>
+
+    <div class="craftrow rev" data-rv style="opacity:0;transform:translateY(40px);transition:.9s ease">
+      <div class="craftimgs">
+        <img src="uploads/619A1D27-EC91-44A7-A206-BBC44CE277C2_1_105_c.jpeg?v=3" alt="JawDrop hero shot — machined aluminum cup holder adapter" loading="lazy" style="grid-column:1/3">
+        <img src="uploads/EC569050-EAD1-44BF-9AB4-0BADA8DF88F2_1_105_c.jpeg" alt="Gold jaw plate in the lathe chuck — Stanford PRL" loading="lazy" style="aspect-ratio:1/1;height:100%;object-fit:cover;object-position:center 45%">
+        <img src="uploads/2D9C51AD-A0B9-4F76-AC07-58EAB4046579_1_105_c.jpeg?v=2" alt="JawDrop securing a slim can in a car cup holder" loading="lazy" style="aspect-ratio:1/1;height:100%;object-fit:cover;object-position:center 45%">
+      </div>
+      <div class="crafttext">
+        <span class="kicker" style="margin-bottom:14px">Product Realization · ME 103</span>
+        <h3 style="margin:0 0 16px;font-weight:500;font-size:1.9rem;text-transform:uppercase">JawDrop</h3>
+        <p style="margin:0 0 12px;font-family:'Inter',sans-serif;font-weight:300;line-height:1.7;color:#33383b;font-size:.95rem">A custom-machined aluminum cup holder adapter that lets any bottle or can sit securely in a car. Three powder-coated jaws, spaced 120° apart, grip anything cylindrical. The base drops into the existing cup holder — no tools, no modifications.</p>
+        <p style="margin:0 0 12px;font-family:'Inter',sans-serif;font-weight:300;line-height:1.7;color:#33383b;font-size:.95rem">Every part built by hand from 6061 aluminum in Stanford's Product Realization Lab — plates turned on the lathe, jaw slots indexed 120° apart on the mill's rotary table, brackets waterjet-cut and formed, then powder coated in red and gold. Presented at Meet the Makers, March 2026.</p>
+        <span style="font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:#6b7176;margin-top:12px;line-height:1.9">Role: Designer &amp; Machinist · Solo build · ME 103, Winter 2026</span>
+        <a href="story/jawdrop.html" class="ulink" style="margin-top:20px;align-self:flex-start;color:#0c5563">Explore the build ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="The Numbers" style="position:relative;width:100%;min-height:88dvh;box-sizing:border-box;padding:110px 30px;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:4rem;background:linear-gradient(0deg,rgba(255,255,255,.86),rgba(255,255,255,.86)),url('uploads/davos.jpeg') center/cover no-repeat">
+  <div style="position:relative;z-index:1;display:flex;flex-direction:column;gap:1rem;max-width:37.5rem">
+    <span class="kicker" data-rv style="opacity:0;transform:translateY(40px);transition:.8s ease">The Record</span>
+    <p class="hbig hang" data-rv style="opacity:0;transform:translateY(40px);transition:.8s ease .08s">My greatest strength -
+discipline
+service and
+execution</p>
+  </div>
+  <div class="statrow" style="position:relative;z-index:1">
+    <div data-rv style="opacity:0;transform:translateY(40px);transition:.8s ease .1s"><div data-count="2000000" data-fmt="money" style="font-weight:600;font-size:clamp(1.9rem,3.2vw,2.8rem)">$0</div><div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.03rem;margin-top:8px;color:#494e54">project funded by grassroots fundraising — Kyiv, Ukraine</div></div>
+    <div data-rv style="opacity:0;transform:translateY(40px);transition:.8s ease .2s"><div data-count="600" style="font-weight:600;font-size:clamp(1.9rem,3.2vw,2.8rem)">0</div><div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.03rem;margin-top:8px;color:#494e54">displaced kids — Ternopil orphanage camp</div></div>
+    <div data-rv style="opacity:0;transform:translateY(40px);transition:.8s ease .3s"><div data-count="125" style="font-weight:600;font-size:clamp(1.9rem,3.2vw,2.8rem)">0</div><div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.03rem;margin-top:8px;color:#494e54">miles — Death Valley → Mt. Whitney</div></div>
+    <div data-rv style="opacity:0;transform:translateY(40px);transition:.8s ease .4s"><div style="font-weight:600;font-size:clamp(1.9rem,3.2vw,2.8rem)">#1</div><div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.03rem;margin-top:8px;color:#494e54">Amazon bestseller at 17</div></div>
+    <div data-rv style="opacity:0;transform:translateY(40px);transition:.8s ease .5s"><div data-count="300" data-pre="1 of " style="font-weight:600;font-size:clamp(1.9rem,3.2vw,2.8rem)">1 of 0</div><div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.03rem;margin-top:8px;color:#494e54">PLC "Iron Man" — top fitness award</div></div>
+  </div>
+</section>
+
+<footer id="write" data-screen-label="Contact" style="background:#000;color:#fff;padding:110px 30px 32px;box-sizing:border-box">
+  <div class="footgrid" style="padding-bottom:6rem">
+    <div>
+      <div style="display:flex;flex-direction:column;gap:1rem;max-width:37.5rem">
+        <span class="kicker" data-rv style="opacity:0;transform:translateY(40px);transition:.8s ease">Write me</span>
+        <p class="hbig hang" data-rv style="color:#fff;opacity:0;transform:translateY(40px);transition:.8s ease .08s">Great missions
+begin with a
+conversation</p>
+      </div>
+      <div style="margin-top:2.5rem;margin-left:3.4rem;display:flex;flex-direction:column;gap:.8rem;font-size:.85rem;text-transform:uppercase;letter-spacing:.03em">
+        <a href="mailto:acfabela@icloud.com" style="text-decoration:none;color:#9ca3a5" ref="{{ emailRef }}" onClick="{{ emailClick }}">acfabela@icloud.com</a>
+        <a href="tel:+16306991855" style="text-decoration:none;color:#9ca3a5">630-699-1855</a>
+        <a href="https://www.linkedin.com/in/andrewfabela/" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:#9ca3a5">LinkedIn ↗</a>
+        <a href="uploads/Andrew Fabela Resume.pdf" download="Andrew Fabela Resume.pdf" style="text-decoration:none;color:#9ca3a5">Resume ↓</a>
+      </div>
+    </div>
+    <div>
+      <div style="display:flex;flex-direction:column;gap:1.8rem">
+        <input class="finput" placeholder="NAME" autocomplete="off" ref="{{ fNameRef }}">
+        <input class="finput" placeholder="EMAIL" autocomplete="off" ref="{{ fEmailRef }}">
+        <input class="finput" placeholder="COMPANY / UNIT" autocomplete="off" ref="{{ fCompanyRef }}">
+        <input class="finput" placeholder="WHAT ARE WE BUILDING?" autocomplete="off" ref="{{ fMsgRef }}">
+        <div style="display:flex;justify-content:flex-end;margin-top:.6rem">
+          <button ref="{{ sendBtnRef }}" onClick="{{ sendClick }}" class="ulink" style="background:none;border:0;color:#fff;cursor:pointer;font-family:'Nohemi',sans-serif;display:flex;align-items:center;gap:8px;padding:0;font-size:.9rem">SEND <span style="font-size:.8em">↗</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-rv style="font-weight:600;font-size:clamp(3.6rem,12.5vw,11rem);line-height:.95;letter-spacing:-.02em;text-align:center;opacity:0;transform:translateY(40px);transition:1s ease">a<span style="opacity:.5">///</span>fabela</div>
+  <div style="display:flex;align-items:center;flex-wrap:wrap;gap:6px 16px;justify-content:center;padding-top:2rem;font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:#c9cdce">
+    <a href="#story" style="text-decoration:none;color:inherit">Story</a><span>/</span>
+    <a href="#chapters" style="text-decoration:none;color:inherit">Chapters</a><span>/</span>
+    <a href="#design" style="text-decoration:none;color:inherit">Design</a><span>/</span>
+    <a href="https://www.linkedin.com/in/andrewfabela/" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit">LinkedIn</a><span>/</span>
+    <a href="uploads/Andrew Fabela Resume.pdf" download style="text-decoration:none;color:inherit">Resume</a><span>/</span>
+    <span>© 2026 Andrew Fabela</span><span>·</span>
+    <span style="display:inline-flex;align-items:baseline">&gt;&nbsp;currently:&nbsp;<span class="rollwrap" style="color:#7fc4cf;font-weight:700"><span class="rollcol"><span>leading.</span><span>building.</span><span>coaching.</span><span>designing.</span><span>running 125 miles.</span><span>writing.</span><span>serving.</span><span>leading.</span></span></span></span><span>·</span>
+    <span>Semper Fidelis</span>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  componentDidMount() {
+    this._loaderT = setTimeout(() => { if (this._loader) this._loader.style.display = "none"; }, 4200);
+
+    const fmt = (el, v) => {
+      const pre = el.getAttribute("data-pre") || "";
+      if (el.getAttribute("data-fmt") === "money") {
+        el.textContent = v >= 1000000 ? "$" + (Math.round((v / 1000000) * 10) / 10) + "M" : "$" + v.toLocaleString();
+      } else {
+        el.textContent = pre + v.toLocaleString();
+      }
+    };
+    const countUp = (el) => {
+      const target = parseInt(el.getAttribute("data-count"), 10), t0 = performance.now(), dur = 1500;
+      const step = (t) => {
+        const p = Math.min((t - t0) / dur, 1), k = 1 - Math.pow(1 - p, 3);
+        fmt(el, Math.round(target * k));
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+
+    // Live-query reveal/parallax pass. The dc-runtime can replace nodes after
+    // mount, so never hold on to elements — re-query every tick. Throttled by
+    // time, not rAF (rAF can be suspended in background panes).
+    const apply = () => {
+      const vh = window.innerHeight;
+      const el = this._parallax;
+      if (el) {
+        const r = el.getBoundingClientRect();
+        if (r.bottom > 0 && r.top < vh) {
+          const p = (r.top + r.height / 2 - vh / 2) / vh;
+          el.style.transform = "translateY(" + (p * -30) + "px) scale(1.05)";
+        }
+      }
+      document.querySelectorAll("[data-rv]:not([data-rv-done])").forEach((n) => {
+        const r = n.getBoundingClientRect();
+        if (r.top < vh * .92 && r.bottom > 0) {
+          n.setAttribute("data-rv-done", "");
+          n.style.opacity = "1";
+          n.style.transform = "none";
+        }
+      });
+      document.querySelectorAll("[data-count]:not([data-count-done])").forEach((n) => {
+        const r = n.getBoundingClientRect();
+        if (r.top < vh * .85 && r.bottom > 0) {
+          n.setAttribute("data-count-done", "");
+          countUp(n);
+        }
+      });
+    };
+    this._onScroll = () => {
+      const now = performance.now();
+      if (now - (this._lastApply || 0) >= 33) {
+        this._lastApply = now;
+        apply();
+      }
+    };
+    window.addEventListener("scroll", this._onScroll, { passive: true });
+    window.addEventListener("resize", this._onScroll);
+    apply();
+    this._lateT = [600, 1500, 3000].map((ms) => setTimeout(apply, ms));
+
+    // Weighted glass hover — a damped spring chases the cursor, so the card
+    // has inertia instead of snapping. Delegated on the document so
+    // re-rendered nodes keep working.
+    const tilt = { card: null, tx: 0, ty: 0, tl: 0, tdx: 0, tdy: 0, cx: 0, cy: 0, cl: 0, cdx: 0, cdy: 0, raf: 0 };
+    const tiltStep = () => {
+      const k = .085;
+      tilt.cx += (tilt.tx - tilt.cx) * k;
+      tilt.cy += (tilt.ty - tilt.cy) * k;
+      tilt.cl += (tilt.tl - tilt.cl) * k;
+      tilt.cdx += (tilt.tdx - tilt.cdx) * k;
+      tilt.cdy += (tilt.tdy - tilt.cdy) * k;
+      if (tilt.card) {
+        tilt.card.style.transform =
+          "perspective(1200px) rotateX(" + tilt.cx.toFixed(3) + "deg) rotateY(" + tilt.cy.toFixed(3) + "deg) translate3d(" + tilt.cdx.toFixed(2) + "px," + (tilt.cdy - tilt.cl * 4).toFixed(2) + "px,0) scale(" + (1 + tilt.cl * .014).toFixed(4) + ")";
+      }
+      const settled = Math.abs(tilt.tx - tilt.cx) < .02 && Math.abs(tilt.ty - tilt.cy) < .02 && Math.abs(tilt.tl - tilt.cl) < .005 && Math.abs(tilt.tdx - tilt.cdx) < .05 && Math.abs(tilt.tdy - tilt.cdy) < .05;
+      if (settled && tilt.tl === 0) {
+        if (tilt.card) tilt.card.style.transform = "";
+        tilt.card = null;
+        tilt.cx = tilt.cy = tilt.cl = tilt.cdx = tilt.cdy = 0;
+        tilt.raf = 0;
+        return;
+      }
+      tilt.raf = requestAnimationFrame(tiltStep);
+    };
+    // Ease a card back to rest instead of snapping when the pointer jumps to a
+    // neighbor mid-tilt.
+    const releaseCard = (el) => {
+      el.style.transition = "transform .55s cubic-bezier(.22,1,.36,1), background-color .4s ease";
+      el.style.transform = "";
+      setTimeout(() => { el.style.transition = ""; }, 560);
+    };
+    this._onMove = (e) => {
+      // Spotlight: every card tracks the pointer in its own coordinates, so the
+      // glow bleeds across neighboring borders as the cursor approaches.
+      document.documentElement.style.setProperty("--xp", (e.clientX / window.innerWidth).toFixed(3));
+      document.querySelectorAll(".glass").forEach((g) => {
+        const gr = g.getBoundingClientRect();
+        if (gr.bottom < -80 || gr.top > window.innerHeight + 80) return;
+        g.style.setProperty("--lx", (e.clientX - gr.left).toFixed(1));
+        g.style.setProperty("--ly", (e.clientY - gr.top).toFixed(1));
+      });
+      const card = e.target && e.target.closest ? e.target.closest(".glass") : null;
+      if (card !== tilt.card) {
+        if (tilt.card) releaseCard(tilt.card);
+        if (card) card.style.transition = "";
+        tilt.card = card;
+        tilt.cx = tilt.cy = tilt.cl = tilt.cdx = tilt.cdy = 0;
+      }
+      if (!card) { tilt.tx = tilt.ty = tilt.tl = tilt.tdx = tilt.tdy = 0; return; }
+      const r = card.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - .5;
+      const py = (e.clientY - r.top) / r.height - .5;
+      tilt.tx = -py * 4.5;
+      tilt.ty = px * 5.5;
+      tilt.tdx = px * 8;
+      tilt.tdy = py * 6;
+      tilt.tl = 1;
+      if (!tilt.raf) tilt.raf = requestAnimationFrame(tiltStep);
+    };
+    this._onLeave = () => { tilt.tx = tilt.ty = tilt.tl = tilt.tdx = tilt.tdy = 0; };
+    this._tilt = tilt;
+    document.addEventListener("pointermove", this._onMove, { passive: true });
+    document.addEventListener("pointerleave", this._onLeave);
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this._loaderT);
+    (this._lateT || []).forEach(clearTimeout);
+    window.removeEventListener("scroll", this._onScroll);
+    window.removeEventListener("resize", this._onScroll);
+    document.removeEventListener("pointermove", this._onMove);
+    document.removeEventListener("pointerleave", this._onLeave);
+    if (this._tilt && this._tilt.raf) cancelAnimationFrame(this._tilt.raf);
+  }
+
+  renderVals() {
+    return {
+      loaderRef: (el) => { this._loader = el; },
+      parallaxRef: (el) => { this._parallax = el; },
+      gridRef: (el) => { this._grid = el; },
+      emailRef: (el) => { this._email = el; },
+      fNameRef: (el) => { this._fName = el; },
+      fEmailRef: (el) => { this._fEmail = el; },
+      fCompanyRef: (el) => { this._fCompany = el; },
+      fMsgRef: (el) => { this._fMsg = el; },
+      sendBtnRef: (el) => { this._sendBtn = el; },
+      emailClick: () => {
+        const addr = "acfabela@icloud.com";
+        const flash = () => {
+          if (!this._email) return;
+          this._email.textContent = "Copied ✓";
+          clearTimeout(this._emailT);
+          this._emailT = setTimeout(() => { if (this._email) this._email.textContent = addr; }, 2000);
+        };
+        try { navigator.clipboard.writeText(addr).then(flash, flash); } catch (e) { flash(); }
+      },
+      sendClick: () => {
+        // The fun part: a red-white-and-blue confetti salute and an OORAH
+        // before the mail client opens.
+        try {
+          const btn = this._sendBtn;
+          const host = document.createElement("div");
+          host.style.cssText = "position:fixed;inset:0;pointer-events:none;z-index:2000;overflow:hidden";
+          document.body.appendChild(host);
+          const r = btn ? btn.getBoundingClientRect() : { left: innerWidth / 2, top: innerHeight / 2, width: 0, height: 0 };
+          const ox = r.left + r.width / 2, oy = r.top + r.height / 2;
+          const colors = ["#b3261e", "#ffffff", "#1c2e4a", "#7fc4cf", "#c19a3d"];
+          const parts = [];
+          for (let i = 0; i < 110; i++) {
+            const el = document.createElement("div");
+            const sz = 4 + Math.random() * 7;
+            el.style.cssText = "position:absolute;left:0;top:0;width:" + sz + "px;height:" + sz * .62 + "px;background:" + colors[i % colors.length];
+            host.appendChild(el);
+            const ang = Math.random() * Math.PI * 2;
+            const sp = 4 + Math.random() * 11;
+            parts.push({ el, x: ox, y: oy, vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp - 8, rot: Math.random() * 360, vr: (Math.random() - .5) * 22 });
+          }
+          const t0 = performance.now();
+          const step = (t) => {
+            const k = (t - t0) / 1800;
+            parts.forEach((p) => {
+              p.vy += .3; p.vx *= .985; p.x += p.vx; p.y += p.vy; p.rot += p.vr;
+              p.el.style.transform = "translate(" + p.x.toFixed(1) + "px," + p.y.toFixed(1) + "px) rotate(" + p.rot.toFixed(0) + "deg)";
+              p.el.style.opacity = String(Math.max(0, 1 - k));
+            });
+            if (k < 1) requestAnimationFrame(step); else host.remove();
+          };
+          requestAnimationFrame(step);
+          if (btn) {
+            btn.textContent = "OORAH! ✓";
+            clearTimeout(this._sendT);
+            this._sendT = setTimeout(() => {
+              if (this._sendBtn) this._sendBtn.innerHTML = 'SEND <span style="font-size:.8em">↗</span>';
+            }, 2600);
+          }
+        } catch (e) {}
+        const v = (el) => (el && el.value ? el.value.trim() : "");
+        const body = [
+          "Name: " + v(this._fName),
+          "Email: " + v(this._fEmail),
+          "Company / Unit: " + v(this._fCompany),
+          "",
+          v(this._fMsg)
+        ].join("\n");
+        setTimeout(() => {
+          window.location.href = "mailto:acfabela@icloud.com?subject=" +
+            encodeURIComponent("Hello Andrew — from your portfolio") +
+            "&body=" + encodeURIComponent(body);
+        }, 750);
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
