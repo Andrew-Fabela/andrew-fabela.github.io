@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- "Andrew Fabela Portfolio.html" is intentionally omitted: it is a byte-for-byte
+     duplicate of the homepage kept so story pages' back-links resolve, and it
+     canonicalises to "/". Listing it would split ranking signals between the two. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://andrewfabela.com/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://andrewfabela.com/Students%20Supporting%20Ukraine.html</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://andrewfabela.com/Tough%20Kids%20Boot%20Camp.html</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://andrewfabela.com/On%20the%20World%20Stage.html</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://andrewfabela.com/The%20Stanford%20American%20Club.html</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://andrewfabela.com/JawDrop.html</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://andrewfabela.com/Tik-Tok.html</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+</urlset>
