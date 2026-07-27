@@ -59,11 +59,36 @@
   })();
   </script>
   <!-- seo:end -->
+  <!-- flashfix:begin -->
+  <script>
+  /* The bundle replaces document.documentElement and React then remounts,
+     briefly detaching the stylesheet that paints body{background}. <html> has
+     no background of its own, so the canvas flashed white between the two.
+     An inline background on <html> survives both and never flashes. */
+  (function () {
+    var CREAM = '#f4f0e6';
+    function pin() {
+      if (document.documentElement) {
+        document.documentElement.style.backgroundColor = CREAM;
+      }
+    }
+    pin();
+    if (typeof MutationObserver !== 'function') return;
+    new MutationObserver(function (muts, obs) {
+      for (var i = 0; i < muts.length; i++) {
+        for (var j = 0; j < muts[i].addedNodes.length; j++) {
+          if (muts[i].addedNodes[j].nodeName === 'HTML') { pin(); obs.disconnect(); return; }
+        }
+      }
+    }).observe(document, { childList: true });
+  })();
+  </script>
+  <!-- flashfix:end -->
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #f4f0e6; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
-    #__bundler_loading { position: fixed; bottom: 20px; right: 20px; font: 13px/1.4 -apple-system, BlinkMacSystemFont, sans-serif; color: #666; background: #fff; padding: 8px 14px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.12); z-index: 10000; }
+    #__bundler_loading { display: none; position: fixed; bottom: 20px; right: 20px; font: 13px/1.4 -apple-system, BlinkMacSystemFont, sans-serif; color: #666; background: #fff; padding: 8px 14px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.12); z-index: 10000; }
     #__bundler_thumbnail { position: fixed; inset: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #f4f0e6; z-index: 9999; }
     #__bundler_thumbnail svg { width: 100%; height: 100%; object-fit: contain; }
     #__bundler_placeholder { color: #999; font-size: 14px; }
